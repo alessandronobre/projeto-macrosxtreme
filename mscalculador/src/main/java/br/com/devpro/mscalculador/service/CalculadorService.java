@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculadorService {
 
-	public int calcularTBM(String genero, int idade, int altura, int peso) {
+	public Integer calcularTBM(String genero, int idade, int altura, int peso) {
 		int tmb = 0;
 		if (genero.equals("Masculino")) {
 			double i = (10 * peso) + (6.25 * altura) - (5 * idade) + 5;
@@ -24,7 +24,7 @@ public class CalculadorService {
 		return tmb;
 	}
 
-	public int calcularGT(String genero, int idade, int altura, int peso, String nivelAtividadeFisica) {
+	public Integer calcularGT(String genero, int idade, int altura, int peso, String nivelAtividadeFisica) {
 		double tmb = calcularTBM(genero, idade, altura, peso);
 		double i = 0;
 
@@ -86,7 +86,7 @@ public class CalculadorService {
 		return gastoTotal;
 	}
 
-	public int objetivoTreino(String genero, int idade, int altura, int peso, String objetivo,
+	public Integer objetivoTreino(String genero, int idade, int altura, int peso, String objetivo,
 			String nivelAtividadeFisica) {
 		double i = 0, gastoTotal;
 		gastoTotal = calcularGT(genero, idade, altura, peso, nivelAtividadeFisica);
@@ -103,7 +103,7 @@ public class CalculadorService {
 
 	}
 
-	public int objetivoDescanso(String genero, int idade, int altura, int peso, String objetivo,
+	public Integer objetivoDescanso(String genero, int idade, int altura, int peso, String objetivo,
 			String nivelAtividadeFisica) {
 		int objetivoTreino = objetivoTreino(genero, idade, altura, peso, objetivo, nivelAtividadeFisica);
 		
@@ -142,8 +142,8 @@ public class CalculadorService {
 		
 		List<Integer> macros = new ArrayList<>();
 		macros.add(proteina);
-		macros.add(gordura);
 		macros.add(carboidatro);
+		macros.add(gordura);
 		macros.add(fibras);
 
 		return macros;
@@ -156,14 +156,14 @@ public class CalculadorService {
 		int proteina, gordura, carboidatro, fibras = 0;
 		
 		proteina = macrosTreino.get(0);
-		gordura = macrosTreino.get(1) - (9 * macrosTreino.get(1) / 100);
-		carboidatro = macrosTreino.get(2) - (20 * macrosTreino.get(2) / 100);
+		carboidatro = macrosTreino.get(1) - (20 * macrosTreino.get(1) / 100);
+		gordura = macrosTreino.get(2) - (9 * macrosTreino.get(2) / 100);
 		fibras = macrosTreino.get(3);
 
 		List<Integer> macros = new ArrayList<>();
 		macros.add(proteina);
-		macros.add(gordura);
 		macros.add(carboidatro);
+		macros.add(gordura);
 		macros.add(fibras);
 
 		return macros;

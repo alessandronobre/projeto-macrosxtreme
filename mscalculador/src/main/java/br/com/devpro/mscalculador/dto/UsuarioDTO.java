@@ -3,8 +3,9 @@ package br.com.devpro.mscalculador.dto;
 import lombok.Data;
 
 @Data
-public class Usuario {
+public class UsuarioDTO {
 
+	private String nome;
 	private String genero;
 	private int idade;
 	private int altura;
