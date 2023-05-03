@@ -20,7 +20,7 @@ public class HistoricoMacrosService {
 		HistoricoMacros historico = new HistoricoMacros();
 		historico.setUsuario(historicoMacros.getUsuario());
 		historico.setImc(historicoMacros.getImc());
-		historico.setTbm(historicoMacros.getTbm());
+		historico.setTmb(historicoMacros.getTmb());
 		historico.setGastoCaloricoTotal(historicoMacros.getGastoCaloricoTotal());
 		historico.setCaloriasTreino(historicoMacros.getCaloriasTreino());
 		historico.setProteinaTreino(historicoMacros.getProteinaTreino());

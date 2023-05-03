@@ -25,7 +25,7 @@ public class HistoricoMacros {
 	private String imc;
 	
 	@Column(name="taxa_metabolica_basal", nullable = false)
-	private Integer tbm;
+	private Integer tmb;
 	
 	@Column(name="gasto_calorico_total", nullable = false)
 	private Integer gastoCaloricoTotal;

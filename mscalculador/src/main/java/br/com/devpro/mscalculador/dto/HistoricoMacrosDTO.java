@@ -9,7 +9,7 @@ public class HistoricoMacrosDTO {
 	
 	private String imc;
 	
-	private Integer tbm;
+	private Integer tmb;
 	
 	private Integer gastoCaloricoTotal;
 

@@ -39,7 +39,7 @@ public class CalculadorController {
 		HistoricoMacrosDTO historicoMacrosDTO = new HistoricoMacrosDTO();
 		historicoMacrosDTO.setUsuario(usuario.getNome());
 		historicoMacrosDTO.setImc(imc);
-		historicoMacrosDTO.setTbm(tmb);
+		historicoMacrosDTO.setTmb(tmb);
 		historicoMacrosDTO.setGastoCaloricoTotal(gastoCaloricoTotal);
 		historicoMacrosDTO.setCaloriasTreino(objetivoTreino);
 		historicoMacrosDTO.setProteinaTreino(macrosTreino.get(0));
