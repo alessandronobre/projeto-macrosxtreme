@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/email")
 public class EmailController {
 
 	@Autowired
@@ -29,24 +29,23 @@ public class EmailController {
 	@Autowired
 	private HistoricoEmailService historicoEmailService;
 
-	@CrossOrigin(origins = "http://localhost:3002", allowedHeaders = "http://localhost:3002")
 	@PostMapping
-	public void enviar(@RequestBody HistoricoEmailDTO historicoEmailDTO) {
+	public void enviar(@RequestBody HistoricoEmailDTO historicoEmail) {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 		LocalDateTime dataHoraAtual = LocalDateTime.now();
 		String dataHoraFormatada = dataHoraAtual.format(formatador);
 
-		HistoricoEmailDTO historicoEmail = new HistoricoEmailDTO();
-		historicoEmail.setUsuario(historicoEmailDTO.getUsuario());
-		historicoEmail.setTituloEmail(historicoEmailDTO.getTituloEmail());
-		historicoEmail.setConteudo(historicoEmailDTO.getConteudo());
-		historicoEmail.setDataEnvio(dataHoraFormatada);
-		historicoEmail.setDestinatario(historicoEmailDTO.getDestinatario());
+		HistoricoEmailDTO histEmail = new HistoricoEmailDTO();
+		histEmail.setUsuario(histEmail.getUsuario());
+		histEmail.setTituloEmail(histEmail.getTituloEmail());
+		histEmail.setConteudo(histEmail.getConteudo());
+		histEmail.setDataEnvio(dataHoraFormatada);
+		histEmail.setDestinatario(histEmail.getDestinatario());
 
 		try {
 //			emailService.sendSimpleMail("alessandronobre.ti@gmail.com", "Teste", "TESTE");
 
-			historicoEmailService.salvarHistorico(historicoEmail);
+			historicoEmailService.salvarHistorico(histEmail);
 
 		} catch (Exception e) {
 			log.error("Erro: {}", e.getMessage());
