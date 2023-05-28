@@ -5,15 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.devpro.msemail.dto.HistoricoEmailDTO;
 import br.com.devpro.msemail.model.HistoricoEmail;
@@ -32,6 +29,7 @@ public class EmailController {
 	@Autowired
 	private HistoricoEmailService historicoEmailService;
 
+	@CrossOrigin(origins = "http://localhost:3002", allowedHeaders = "http://localhost:3002")
 	@PostMapping
 	public void enviar(@RequestBody HistoricoEmailDTO historicoEmailDTO) {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
