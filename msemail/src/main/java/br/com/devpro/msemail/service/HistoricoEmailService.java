@@ -1,5 +1,6 @@
 package br.com.devpro.msemail.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,18 @@ public class HistoricoEmailService {
 
 	}
 
-	public List<HistoricoEmail> buscarHistoricoUsuario(String usuario) throws Exception {
+	public List<HistoricoEmailDTO> findHistoricoPorUsuario(String usuario) throws Exception {
 		List<HistoricoEmail> historico = historicoEmailRepository.findHistoricoPorUsuario(usuario);
 		
+		List<HistoricoEmailDTO> resultList = new ArrayList<>();
+		
 		if (!historico.isEmpty()) {
-			return historico;
+			for(HistoricoEmail hist : historico) {
+				HistoricoEmailDTO lista = new HistoricoEmailDTO(hist);
+				resultList.add(lista);
+			}
+			
+			return resultList;
 		}
 		 throw new Exception("Não há historico de email para esse usuario");
 

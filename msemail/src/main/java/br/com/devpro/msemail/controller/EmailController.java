@@ -2,14 +2,17 @@ package br.com.devpro.msemail.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.devpro.msemail.dto.HistoricoEmailDTO;
@@ -52,18 +55,17 @@ public class EmailController {
 		}
 
 	}
-
-	@GetMapping
-	public void buscarHistoricoUsuario(@RequestBody HistoricoEmailDTO usuario) {
-		
+	
+    @GetMapping(params = "nome")
+    public ResponseEntity<List<HistoricoEmailDTO>> findHistoricoPorUsuario(@RequestParam("nome") String nome){
+        List<HistoricoEmailDTO> lista = new ArrayList<>();
 		try {
-			List<HistoricoEmail> historico = historicoEmailService.buscarHistoricoUsuario(usuario.getUsuario());
-			historico.stream()
-				.forEach(e -> System.out.println(e.toString()));
-
+			lista = historicoEmailService.findHistoricoPorUsuario(nome);
 		} catch (Exception e) {
-			log.error("Erro: {}", e.getMessage());
+			e.getMessage();
+			ResponseEntity.noContent();
+			
 		}
-
-	}
+        return ResponseEntity.ok(lista);
+    }
 }

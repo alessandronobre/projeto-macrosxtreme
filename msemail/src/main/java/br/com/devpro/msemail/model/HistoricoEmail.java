@@ -33,4 +33,5 @@ public class HistoricoEmail {
 	@Column(nullable = false)
 	private String destinatario;
 
+	
 }
