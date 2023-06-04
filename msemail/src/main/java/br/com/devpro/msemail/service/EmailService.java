@@ -1,6 +1,5 @@
 package br.com.devpro.msemail.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.mail.SimpleMailMessage;
@@ -10,15 +9,17 @@ import org.springframework.stereotype.Service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+@RequiredArgsConstructor
 @Service
 public class EmailService {
 	
-	@Autowired
-	private JavaMailSender mailSender;
+	private final JavaMailSender mailSender;
 	
-	@Autowired
-	private ResourceLoader resourceLoader;
+	private final ResourceLoader resourceLoader;
 	
 	public void sendSimpleMail(String to, String subject, String body){
 		SimpleMailMessage message = new SimpleMailMessage(); 
@@ -28,6 +29,7 @@ public class EmailService {
 		message .setText(body);
 
 		mailSender.send(message);
+		log.info("Enviando email...");
 
 	}
 	
@@ -44,7 +46,7 @@ public class EmailService {
 		mimeMessageHelper.addAttachment(resource.getFilename(), resource);
 
 		mailSender.send(mimeMessage);
-
+		log.info("Enviando email...");
 	}
 
 }
