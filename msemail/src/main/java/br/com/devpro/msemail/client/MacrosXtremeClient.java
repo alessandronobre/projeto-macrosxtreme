@@ -10,6 +10,6 @@ import br.com.devpro.msemail.dto.EmailDTO;
 public interface MacrosXtremeClient {
 
 	@PostMapping("/historico")
-	public void salverHistoricoEmail(@RequestBody EmailDTO email);
+	public void salvarHistoricoEmail(@RequestBody EmailDTO email);
 	
 }

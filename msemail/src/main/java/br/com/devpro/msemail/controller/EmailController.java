@@ -36,9 +36,9 @@ public class EmailController {
 
 		try {
 			emailService.sendSimpleMail(email.getDestinatario(), email.getTituloEmail(), email.getConteudo());
-			macrosXtremeClient.salverHistoricoEmail(email);
+			macrosXtremeClient.salvarHistoricoEmail(email);
 			
-			return ResponseEntity.ok("Sucesso");
+			return ResponseEntity.status(HttpStatus.CREATED).build();
 			
 		} catch (Exception e) {
 			log.error("Erro: {}", e.getMessage());
